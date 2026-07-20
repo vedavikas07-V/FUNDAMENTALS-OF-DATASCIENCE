@@ -1,0 +1,29 @@
+import numpy as np
+
+# Sample data
+# Brand, Model, Year, Engine, Fuel, City, Highway, MPG
+fuel_data = np.array([
+    ["mazda","CX5",2022,"2.5L","Petrol",25,31,28],
+    ["audi","A4",2022,"2.0L","Petrol",22,30,26],
+    ["mazda","Mazda3",2023,"2.0L","Petrol",28,36,32],
+    ["audi","Q5",2023,"2.0L","Diesel",21,29,25],
+    ["mazda","CX30",2024,"2.5L","Petrol",27,35,31]
+], dtype=object)
+
+fuel_efficiency = fuel_data[:,7].astype(float)
+make = fuel_data[:,0]
+
+average_efficiency = np.mean(fuel_efficiency)
+
+mazda_eff = fuel_efficiency[make == "mazda"]
+audi_eff = fuel_efficiency[make == "audi"]
+
+mazda_avg = np.mean(mazda_eff)
+audi_avg = np.mean(audi_eff)
+
+percentage_improvement = ((mazda_avg - audi_avg) / audi_avg) * 100
+
+print("Average Fuel Efficiency of all cars:", round(average_efficiency,2), "MPG")
+print("Average Fuel Efficiency of Mazda:", round(mazda_avg,2), "MPG")
+print("Average Fuel Efficiency of Audi:", round(audi_avg,2), "MPG")
+print("Percentage Improvement from Mazda to Audi:", round(percentage_improvement,2), "%")
