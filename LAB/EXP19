@@ -1,0 +1,51 @@
+
+import pandas as pd
+
+# Create a sample sales_data.csv file
+# This is added to resolve the FileNotFoundError.
+sample_sales_data = {
+    'Product': ['Laptop', 'Mouse', 'Keyboard', 'Monitor', 'Laptop'],
+    'Quantity Sold': [10, 50, 20, 5, 8],
+    'Unit Price': [1200, 25, 75, 300, 1150]
+}
+sample_df_sales = pd.DataFrame(sample_sales_data)
+sample_df_sales.to_csv('sales_data.csv', index=False)
+
+# Read CSV
+
+df = pd.read_csv("sales_data.csv")
+
+print("DATA")
+display(df.head())
+
+# Create Total Sales
+
+df["Total Sales"] = df["Quantity Sold"] * df["Unit Price"]
+
+# Profit = 20% margin
+
+df["Profit"] = df["Total Sales"] * 0.20
+
+print("\nUpdated Dataset")
+display(df.head())
+
+# Total sales for each product
+
+product_sales = df.groupby("Product")["Total Sales"].sum()
+
+print("\nTOTAL SALES FOR EACH PRODUCT")
+print(product_sales)
+
+# Overall Profit
+
+overall_profit = df["Profit"].sum()
+
+print("\nOVERALL PROFIT")
+print(overall_profit)
+
+# Top 5 profitable products
+
+top5 = df.groupby("Product")["Profit"].sum().sort_values(ascending=False).head(5)
+
+print("\nTOP 5 MOST PROFITABLE PRODUCTS")
+print(top5)
