@@ -1,0 +1,14 @@
+import pandas as pd
+
+# Sample likes data
+data = {
+    'Likes': [10, 15, 10, 20, 25, 15, 10, 20, 30, 25, 20]
+}
+
+df = pd.DataFrame(data)
+
+# Frequency distribution
+likes_frequency = df['Likes'].value_counts().sort_index()
+
+print("Frequency Distribution of Likes:\n")
+print(likes_frequency)
