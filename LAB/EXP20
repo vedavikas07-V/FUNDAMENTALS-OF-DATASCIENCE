@@ -1,0 +1,52 @@
+import pandas as pd
+
+# Create a sample customer_data.csv file
+# This is added to resolve the FileNotFoundError.
+sample_customer_data = {
+    'Customer ID': [1, 2, 3, 4, 5, 6],
+    'Age': [25, 30, 35, 40, 28, 50],
+    'Total Spending': [15000, 22000, 55000, 18000, 30000, 60000]
+}
+sample_df_customer = pd.DataFrame(sample_customer_data)
+sample_df_customer.to_csv('customer_data.csv', index=False)
+
+# Read customer dataset
+
+df = pd.read_csv("customer_data.csv")
+
+print("DATASET")
+display(df.head())
+
+# Function for segmentation
+
+def segment_customer(spending):
+
+    if spending >= 50000:
+        return "High Spenders"
+
+    elif spending >= 20000:
+        return "Medium Spenders"
+
+    else:
+        return "Low Spenders"
+
+# Create Segment column
+
+df["Segment"] = df["Total Spending"].apply(segment_customer)
+
+print("\nCUSTOMER DATA WITH SEGMENT")
+display(df)
+
+# Average age in each segment
+
+avg_age = df.groupby("Segment")["Age"].mean()
+
+print("\nAVERAGE AGE IN EACH SEGMENT")
+print(avg_age)
+
+# Number of customers in each segment
+
+count_segment = df["Segment"].value_counts()
+
+print("\nNUMBER OF CUSTOMERS IN EACH SEGMENT")
+print(count_segment)
