@@ -1,0 +1,32 @@
+from collections import Counter
+import re
+
+# Sample customer reviews
+reviews = [
+    'This product is excellent and easy to use',
+    'Excellent quality and excellent support',
+    'Easy to use and very useful product',
+    'The product quality is good',
+    'Good value for money and good performance'
+]
+
+# Combine all reviews into one text
+text = ' '.join(reviews)
+
+# Convert to lowercase
+text = text.lower()
+
+# Remove punctuation
+text = re.sub(r'[^a-zA-Z\s]', '', text)
+
+# Split into words
+words = text.split()
+
+# Calculate frequency distribution
+frequency = Counter(words)
+
+# Display frequency distribution
+print('Frequency Distribution of Words:\n')
+
+for word, count in frequency.items():
+    print(f'{word}: {count}')
