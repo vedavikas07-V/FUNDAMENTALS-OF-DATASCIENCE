@@ -1,0 +1,53 @@
+from collections import Counter
+import re
+
+# Create a sample text file
+text = """
+Data science is fun. Data analysis is useful.
+Python is widely used in data science.
+"""
+
+with open("sample_text.txt", "w") as file:
+    file.write(text)
+
+# Read the file
+with open("sample_text.txt", "r") as file:
+    content = file.read().lower()
+
+# Remove punctuation and split into words
+words = re.findall(r'\b\w+\b', content)
+
+# Count word frequencies
+frequency = Counter(words)
+
+# Display result
+print("Word Frequency Distribution:\n")
+for word, count in frequency.items():
+    print(word, ":", count)# Question 13: Frequency distribution of words in a text document
+
+from collections import Counter
+import re
+
+# Create a sample text file
+text = """
+Data science is fun. Data analysis is useful.
+Python is widely used in data science.
+"""
+
+with open("sample_text.txt", "w") as file:
+    file.write(text)
+
+# Read the file
+with open("sample_text.txt", "r") as file:
+    content = file.read().lower()
+
+# Remove punctuation and split into words
+words = re.findall(r'\b\w+\b', content)
+
+# Count word frequencies
+frequency = Counter(words)
+
+# Display result
+print("Word Frequency Distribution:\n")
+for word, count in frequency.items():
+    print(word, ":", count)
