@@ -1,0 +1,35 @@
+import pandas as pd
+
+# Sample data to replace reading from 'order_data.csv'
+data = {
+    'Full Name': ['Alice Smith', 'Bob Johnson', 'Alice Smith', 'Charlie Brown', 'Bob Johnson'],
+    'Order Count': [1, 2, 1, 3, 1],
+    'Items': ['Laptop', 'Mouse', 'Keyboard', 'Monitor', 'Laptop'],
+    'Order Total': [1200.00, 25.50, 75.00, 300.00, 1150.00],
+    'Order Date': ['2023-01-15', '2023-01-16', '2023-01-17', '2023-02-01', '2023-02-05']
+}
+
+df = pd.DataFrame(data)
+
+# Convert Order Date column to datetime
+df['Order Date'] = pd.to_datetime(df['Order Date'])
+
+# Total orders made by each customer
+total_orders = df.groupby('Full Name')['Order Count'].sum()
+
+# Average order total for each product
+avg_order_per_product = df.groupby('Items')['Order Total'].mean()
+
+# Earliest and latest order dates
+earliest_order = df['Order Date'].min()
+latest_order = df['Order Date'].max()
+
+# Display results
+print('Total number of orders made by each customer:')
+print(total_orders)
+
+print('\nAverage order total for each product:')
+print(avg_order_per_product)
+
+print('\nEarliest order date:', earliest_order)
+print('Latest order date:', latest_order)
