@@ -1,0 +1,25 @@
+import matplotlib.pyplot as plt
+
+# Monthly data
+months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+          'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+temperature = [24, 26, 29, 32, 35, 33, 31, 30, 29, 28, 26, 24]
+rainfall = [15, 20, 25, 40, 80, 120, 150, 140, 110, 70, 35, 20]
+
+
+plt.figure(figsize=(10, 5))
+plt.plot(months, temperature, marker='o', linewidth=2)
+plt.title('Monthly Temperature')
+plt.xlabel('Month')
+plt.ylabel('Temperature (°C)')
+plt.grid(True)
+plt.show()
+
+plt.figure(figsize=(10, 5))
+plt.scatter(months, rainfall, s=100)
+plt.title('Monthly Rainfall')
+plt.xlabel('Month')
+plt.ylabel('Rainfall (mm)')
+plt.grid(True)
+plt.show()
